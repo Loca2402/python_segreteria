@@ -1,19 +1,28 @@
-from sqlalchemy import create_engine  # Nota: ho tolto 'create_index' dall'import perché non serve qui
-from sqlalchemy.orm import declarative_base, sessionmaker
-SQLALCHEMY_DATABASE_URL = "sqlite:///./segreteria.db"
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+from app.Controller import HealthController
+from app.database import Base, engine
+from app.Model.Ateneo import Ateneo
+from app.Model.Dipartimento import Dipartimento
+from app.Model.Corso import Corso
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],  # Identico al tuo @CrossOrigin di Spring!
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+# Includiamo la rotta di test
+app.include_router(HealthController.router)
 
-Base = declarative_base()
-Base.metadata.create_all(bind=engine) #crea tutte le tabelle all'istante.
+Base.metadata.create_all(bind=engine)
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
+@app.get("/")
+def home():
+    return {"message": "Backend Python Segreteria avviato"}
