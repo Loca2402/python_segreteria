@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.Model import Dipartimento
+from app.model import Dipartimento
 
 
 class DipartimentoRepository():

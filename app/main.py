@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.Controller import HealthController
+from app.controller import HealthController
 from app.database import Base, engine
-from app.Model.Ateneo import Ateneo
-from app.Model.Dipartimento import Dipartimento
-from app.Model.Corso import Corso
+from app.model.Ateneo import Ateneo
+from app.model.Dipartimento import Dipartimento
+from app.model.Corso import Corso
 
 app = FastAPI()
 

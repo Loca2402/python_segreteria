@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app.Model import Ateneo
+from app.model import Ateneo
 
 
 class AteneoRepository:
