@@ -1,5 +1,3 @@
-from .AteneoDTO import AteneoDTO
-from .DipartimentoDTO import DipartimentoDTO
-from  .CorsoDTO import  CorsoDTO
+from app.DTO import AteneoDTO, DipartimentoDTO, CorsoDTO
 __all__ = ["AteneoDTO", "DipartimentoDTO", "CorsoDTO"]
 

@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
-
-Base = declarative_base()
+from sqlalchemy.orm import relationship
+from app.main import Base
 
 
 class Dipartimento(Base):
@@ -11,7 +10,7 @@ class Dipartimento(Base):
     codice = Column(String, unique=True)
     nome = Column(String, unique=True)
 
-    id_ateneo = Column(Integer, ForeignKey('Ateneo.id'), nullable=False)
+    id_ateneo = Column(Integer, ForeignKey('Atenei.id'), nullable=False)
     ateneo = relationship("Ateneo", back_populates="dipartimento")
 
     corsi = relationship("Corso", back_populates="dipartimento")

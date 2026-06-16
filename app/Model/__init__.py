@@ -1,6 +1,4 @@
-from .Ateneo import Base, Ateneo
-from .Dipartimento import Dipartimento
-from .Corso import Corso
+from app.Model import Ateneo, Corso, Dipartimento, Studente
 
 
-__all__ = ["Base", "Ateneo", "Dipartimento", "Corso"]
+__all__ = ["Ateneo", "Dipartimento", "Corso", "Studente"]

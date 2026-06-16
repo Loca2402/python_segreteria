@@ -1,11 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import declarative_base, relationship
-
-Base = declarative_base()
-
+from sqlalchemy.orm import relationship
+from app.main import Base
 
 class Corso(Base):
-    __tablename__ = 'Corso'
+    __tablename__ = 'Corsi'
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     codice = Column(Integer, unique=True)
     nome = Column(String, nullable=False)
@@ -13,5 +11,7 @@ class Corso(Base):
     tipo_titolo = Column(String, nullable=False)
 
 
-    id_dipartimento = Column(Integer, ForeignKey('Dipartimento.id'), nullable=False)
+    id_dipartimento = Column(Integer, ForeignKey('Dipartimenti.id'), nullable=False)
     dipartimento = relationship("Dipartimento", back_populates="corsi")
+
+    studenti = relationship("Studente", back_populates="corso")
