@@ -15,8 +15,8 @@ class AteneoService:
         return [AteneoMapper.to_dto(ateneo) for ateneo in atenei_db]
 
     @staticmethod
-    def cerca_atenei(db:Session, ateneoId:str)-> AteneoDTO:
-        ateneo_db = AteneoRepository.get_all(db, ateneoId)
+    def cerca_ateneo(db:Session, ateneoId:str)-> AteneoDTO:
+        ateneo_db = AteneoRepository.get_by_id(db, ateneoId)
         if not ateneo_db:
             raise ValueError(f"ateneo con ID {ateneoId} non trovato")
         return AteneoMapper.to_dto(ateneo_db)

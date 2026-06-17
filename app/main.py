@@ -6,6 +6,7 @@ from app.database import Base, engine
 from app.model.Ateneo import Ateneo
 from app.model.Dipartimento import Dipartimento
 from app.model.Corso import Corso
+from app.routers import atenei
 
 app = FastAPI()
 
@@ -19,9 +20,10 @@ app.add_middleware(
 
 # Includiamo la rotta di test
 app.include_router(HealthController.router)
+app.include_router(atenei.router)
+
 
 Base.metadata.create_all(bind=engine)
-
 
 @app.get("/")
 def home():
